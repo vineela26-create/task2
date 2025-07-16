@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Form</title>
+    <style>
+     body {
+      background: url('https://t3.ftcdn.net/jpg/02/70/35/00/360_F_270350073_WO6yQAdptEnAhYKM5GuA9035wbRnVJSr.jpg');
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+     }
+    .second {
+      background: rgba(255, 255, 255, 0.7);
+      padding: 40px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+    }
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: -10px;
+      margin-bottom: 10px;
+    }
+    </style>
+</head>
+<body>
+    <div class="second">
+      <h2>Contact Form</h2>
+          <form onsubmit="return validateForm()">
+           <input type="email" id="email" name="email" placeholder="Email"><br><br>
+           <div id="emailError" class="error"></div>
+           
+           <input type="text" id="password" name="password" placeholder="password"><br><br>
+           <div id="passwordError" class="error"></div>
+
+          <button type="submit">Submit</button>
+        <p>Don't you have an account? <a href="#">Sign Up</a></p>
+      </form>
+
+     <script>
+        function validateForm() {
+          const email = document.getElementById("email").value.trim();
+          const password = document.getElementById("password").value.trim();
+          const emailError = document.getElementById("emailError");
+          const passwordError = document.getElementById("passwordError");
+
+          let isValid = true;
+
+          // Clear previous errors
+          emailError.textContent = "";
+          passwordError.textContent = "";
+
+          // Email validation
+          const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+          if (email === "") {
+            emailError.textContent = "Email is required.";
+            isValid = false;
+          } else if (!emailPattern.test(email)) {
+            emailError.textContent = "Enter a valid email address.";
+            isValid = false;
+          }
+
+      
+          if (password === "") {
+            passwordError.textContent = "Password is required.";
+            isValid = false;
+          } else if (password.length < 6) {
+            passwordError.textContent = "Password must be at least 6 characters.";
+            isValid = false;
+          }
+
+          
+          if (isValid) {
+            alert("Form submitted successfully!");
+          }
+
+          return isValid; 
+        }
+     </script>
+    </div>
+</body>
+</html>
